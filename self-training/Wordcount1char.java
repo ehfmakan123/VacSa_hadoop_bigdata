@@ -83,7 +83,7 @@ public class Wordcount1char {
 			System.exit(2);
 		}
 		Job job = new Job(conf,"word count");
-		job.setJarByClass(Wordcount.class);
+		job.setJarByClass(Wordcount1.class);
 
 		// let hadoop know my map and reduce classes
 		job.setMapperClass(TokenizerMapper.class);
