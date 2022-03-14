@@ -82,7 +82,7 @@ while(count < 2): # 몇페이지 까지??
         df.loc[idx] = [tit, con]
         idx += 1
         df.to_csv('df.csv')
-        print(idx)
+        print(idx) # 몇번째 게시글을 스크랩 중인지 프린트
 
 
     time.sleep(1)
@@ -102,6 +102,8 @@ df
 #네이버 api를 사용해서 하면 한계가  있어서 직접 코딩 네이버 카페글(공개) 중 원하는 키워드를 가지고 있는 게시물을 크롤링 한다
 
 #Title(제목)과 , Content (내용) 을 수집. 
+                                          
+#df.csv 파일으로 저장한다
                                           
                                          
                                          
