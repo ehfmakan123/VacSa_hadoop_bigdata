@@ -1,4 +1,4 @@
-package com.ssafy;
+package com.ssafy.vacsa;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
