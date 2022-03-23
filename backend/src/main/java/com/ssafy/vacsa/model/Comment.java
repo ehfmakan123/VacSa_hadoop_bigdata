@@ -31,8 +31,8 @@ public class Comment {
     private Board board;
 
     @ManyToOne
-    @JoinColumn(name =  "userId")
-    private User user;
+    @JoinColumn(name =  "username")
+    private User commentUser;
 
     @DateTimeFormat(pattern = "yyyy-mm-dd HH:mm")
     private LocalDate createDate; // 날짜
