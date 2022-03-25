@@ -1,4 +1,12 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import "@babel/polyfill";
+import "mutationobserver-shim";
+import Vue from "vue";
+import "./plugins/bootstrap-vue";
+import store from "./store/Store";
+import router from "./router/Router";
+import "./assets/scss/style.scss";
+import App from "./App.vue";
 
-createApp(App).mount('#app')
+Vue.config.productionTip = false;
+
+new Vue({ store, router, render: (h) => h(App) }).$mount("#app");

@@ -1,4 +1,4 @@
-# frontend
+# xtreme-vue2
 
 ## Project setup
 ```
