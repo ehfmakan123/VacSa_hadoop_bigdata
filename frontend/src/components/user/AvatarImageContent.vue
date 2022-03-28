@@ -27,8 +27,8 @@
 </template>
 
 <script>
-import img1 from "../../../assets/images/users/1.jpg";
-import img2 from "../../../assets/images/users/2.jpg";
+import img1 from "../../assets/images/users/1.jpg";
+import img2 from "../../assets/images/users/2.jpg";
 
 export default {
   name: "AvatarImageContent",

@@ -14,17 +14,17 @@
 
 <script>
 export default {
-  name: "Alerts",
+  name: "Map",
 
   data: () => ({
     page: {
-      title: "Alerts",
+      title: "Map",
     },
   }),
   components: {
-    AlertContextual: () => import("@/components/ui/alert/AlertContextual"),
-    AlertLinks: () => import("@/components/ui/alert/AlertLinks"),
-    AlertDismissible: () => import("@/components/ui/alert/AlertDismissible"),
+    AlertContextual: () => import("@/components/map/AlertContextual"),
+    AlertLinks: () => import("@/components/map/AlertLinks"),
+    AlertDismissible: () => import("@/components/map/AlertDismissible"),
   },
 };
 </script>

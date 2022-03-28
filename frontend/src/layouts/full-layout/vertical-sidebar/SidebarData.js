@@ -2,27 +2,27 @@ export default [
   {
     id: "1",
     icon: "mdi mdi-view-dashboard",
-    title: "Dashboard",
-    to: "/starter",
+    title: "홈",
+    to: "/",
   },
 
   {
     id: "2",
     icon: "mdi mdi-message-bulleted",
-    title: "Alert",
-    to: "/ui-elements/alert",
+    title: "지도",
+    to: "/map",
   },
   {
     id: "4",
     icon: "mdi mdi-account-box",
-    title: "Avatar",
-    to: "/ui-elements/avatar",
+    title: "게시판",
+    to: "/board",
   },
   {
     id: "5",
     icon: "mdi mdi-application",
-    title: "Badge",
-    to: "/ui-elements/badge",
+    title: "로그인",
+    to: "/ui-elements/breadcrumb",
   },
   {
     id: "6",

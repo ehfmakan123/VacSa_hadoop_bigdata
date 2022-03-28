@@ -25,13 +25,11 @@ export default {
     },
   }),
   components: {
-    AvatarImageContent: () =>
-      import("@/components/ui/avatar/AvatarImageContent"),
-    AvatarIconContent: () => import("@/components/ui/avatar/AvatarIconContent"),
-    AvatarTextContent: () => import("@/components/ui/avatar/AvatarTextContent"),
+    AvatarImageContent: () => import("@/components/user/AvatarImageContent"),
+    AvatarIconContent: () => import("@/components/user/AvatarIconContent"),
+    AvatarTextContent: () => import("@/components/user/AvatarTextContent"),
 
-    AvatarMultilineText: () =>
-      import("@/components/ui/avatar/AvatarMultilineText"),
+    AvatarMultilineText: () => import("@/components/user/AvatarMultilineText"),
   },
 };
 </script>
