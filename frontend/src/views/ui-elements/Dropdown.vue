@@ -14,11 +14,11 @@
 
 <script>
 export default {
-  name: "Breadcrumb",
+  name: "User",
 
   data: () => ({
     page: {
-      title: "Breadcrumb",
+      title: "User",
     },
   }),
   components: {
