@@ -7,25 +7,25 @@ export default {
     this.renderChart(
       {
         labels: [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July"
+          "두통",
+          "근육통",
+          "어지러움",
+          "흉통",
+          "메스꺼움",
+          "오한",
+          "구토"
         ],
         datasets: [
           {
-            label: "Income $",
-            backgroundColor: "#2962ff",
-            data: [2000, 40000, 20000, 39000, 10000, 40000, 69000],
+            label: "단위: 건",
+            backgroundColor: "#c9c9c9",
+            data: [110187, 106192, 67350, 63002, 52942, 40137, 23355],
           }
         ]
       },
       { responsive: true, maintainAspectRatio: false, scales: {
               xAxes: [{
-                  barThickness: 7,
+                  barThickness: 30,
               }]
           } }
     );
