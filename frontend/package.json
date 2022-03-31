@@ -16,6 +16,7 @@
     "node-sass": "^5.0.0",
     "vue": "^2.6.11",
     "vue-chartjs": "^3.4.2",
+    "vue-doughnut-chart": "^0.3.0",
     "vue-router": "^3.5.1",
     "vue-server-renderer": "^2.6.12",
     "vuelidate": "^0.7.6",
