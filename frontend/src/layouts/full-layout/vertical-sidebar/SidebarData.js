@@ -21,14 +21,8 @@ export default [
   {
     id: "5",
     icon: "mdi mdi-application",
-    title: "로그인",
-    to: "/ui-elements/breadcrumb",
-  },
-  {
-    id: "6",
-    icon: "mdi mdi-equal",
-    title: "Breadcrumb",
-    to: "/ui-elements/breadcrumb",
+    title: "회원",
+    to: "/member",
   },
   {
     id: "7",
