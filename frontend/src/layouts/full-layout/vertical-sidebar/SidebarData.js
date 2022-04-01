@@ -1,26 +1,26 @@
 export default [
   {
     id: "1",
-    icon: "mdi mdi-view-dashboard",
+    icon: "mdi mdi-home",
     title: "홈",
     to: "/",
   },
 
   {
     id: "2",
-    icon: "mdi mdi-message-bulleted",
+    icon: "mdi mdi-map",
     title: "지도",
     to: "/map",
   },
   {
     id: "4",
-    icon: "mdi mdi-account-box",
+    icon: "mdi mdi-bulletin-board",
     title: "게시판",
     to: "/board",
   },
   {
     id: "5",
-    icon: "mdi mdi-application",
+    icon: "mdi mdi-login",
     title: "로그인",
     to: "/ui-elements/breadcrumb",
   },
