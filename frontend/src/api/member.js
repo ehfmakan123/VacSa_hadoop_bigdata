@@ -1,10 +1,31 @@
-// import { apiInstance } from "./index.js";
+import { apiInstance } from "./index.js";
 
-// const api = apiInstance();
+const api = apiInstance();
+const COMMON = "/user";
+async function login(user, success, fail) {
+  await api
+    .post(COMMON + `/login`, JSON.stringify(user))
+    .then(success)
+    .catch(fail);
+}
 
-// async function login(user, success, fail) {
-//   await api.post(`/user/login`, JSON.stringify(user)).then(success).catch(fail);
-// }
+function checkRepeatIdById(userid, success, fail) {
+  api
+    .get(COMMON + `/idcheck`, {
+      params: {
+        userId: userid,
+      },
+    })
+    .then(success)
+    .catch(fail);
+}
+
+async function registerUser(user, success, fail) {
+  await api
+    .post(COMMON + `/signup`, JSON.stringify(user))
+    .then(success)
+    .catch(fail);
+}
 
 // async function findById(userid, success, fail) {
 //   api.defaults.headers["access-token"] = sessionStorage.getItem("access-token");
@@ -58,16 +79,4 @@
 // }
 // // function logout(success, fail)
 
-// export {
-//   login,
-//   registerUser,
-//   findById,
-//   modifyUserById,
-//   deleteUserById,
-//   checkRepeatIdById,
-//   updateInterestArea,
-//   convertCodeToString,
-//   getInterestAreaById,
-//   insertInterestAreaById,
-//   deleteAreaById,
-// };
+export { login, registerUser, checkRepeatIdById };
