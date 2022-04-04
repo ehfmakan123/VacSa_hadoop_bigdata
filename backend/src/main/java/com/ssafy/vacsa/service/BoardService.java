@@ -10,4 +10,6 @@ public interface BoardService {
     void delete(Long boardId) throws Exception;  // 게시글 삭제
     BoardDto detail(Long boardId, String username) throws Exception; // 게시글 상세보기
     List<BoardDto> getBoardList(String username) throws Exception;
+
+    List<BoardDto> getBoardListTotal() throws Exception; // 게시글 전체 리스트
 }
