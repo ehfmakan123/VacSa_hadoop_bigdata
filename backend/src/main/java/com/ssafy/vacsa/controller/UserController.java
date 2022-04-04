@@ -48,11 +48,11 @@ public class UserController {
     @ApiOperation(value ="아이디 중복검사")
     @GetMapping("/idcheck")
     public ResponseEntity<Boolean> idCheck(@RequestParam @ApiParam(value = "중복된 아이디가 있는지 확인") String userId) throws Exception{
-        boolean checkflag = false;
+        boolean checkflag = true;
         HttpStatus status = null;
         try {
             if(userService.idCheck((userId))){
-                checkflag= true;
+                checkflag= false;
             }
             status = HttpStatus.OK;
         }catch (Exception e){
