@@ -79,33 +79,22 @@
 
       <!-- <div>{{decnt}}</div> -->
     <!-- ----------------------------------------------- -->
-<<<<<<< HEAD
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-=======
 
     <br>
     <br>
     <br>
->>>>>>> Feat/dashboard
 
     <!-- <b-row>
       <b-col cols="12" lg="8">
         <b-card class="mb-4">
           <h4 class="card-title">Sales Summary</h4>
+          <SalesSummary />
         </b-card>
       </b-col>
       <b-col cols="12" lg="4">
         <b-card class="mb-4">
           <h4 class="card-title">Sales Income</h4>
+          <SalesIncome />
         </b-card>
       </b-col>
     </b-row> -->
@@ -119,6 +108,7 @@
           Overview of Latest Month
         </h6>
       </b-card-body>
+      <SellingProduct />
     </b-card>
     <div>
       
@@ -129,10 +119,7 @@
     <!-- ----------------------------------------------- -->
     <!-- cards row -->
     <!-- ----------------------------------------------- -->
-<<<<<<< HEAD
-=======
     <!-- <TopCards /> -->
->>>>>>> Feat/dashboard
     <!-- ----------------------------------------------- -->
     <!-- end cards row -->
     <!-- ----------------------------------------------- -->
@@ -150,12 +137,9 @@ import InfoText4 from "./dashboard-components/InfoText4";
 import SalesIncome from "./dashboard-components/SalesIncome";
 // import SellingProduct from "./dashboard-components/SellingProduct";
 // import TopCards from "./dashboard-components/TopCards";
-<<<<<<< HEAD
-=======
 import axios from 'axios';
 
 
->>>>>>> Feat/dashboard
 export default {
   name: "Starter",
   data(){
