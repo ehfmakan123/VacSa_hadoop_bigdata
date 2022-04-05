@@ -100,7 +100,6 @@ export default {
 
   methods: {
     checkValue() {
-      console.log(this.user);
       // 사용자 입력값 체크하기
       // 아이디, 이름, 비밀번호, 이메일 이 없을 경우 각 항목에 맞는 메세지를 출력
       let err = true;
@@ -156,7 +155,6 @@ export default {
       var ckid = this.user.username;
       if (ckid.length < 4 || ckid.length > 16) {
         this.idresult = "아이디는 6자이상 16자이하입니다.";
-        //console.log(ckid);
         this.$refs.username.focus();
         this.isSuccess = false;
         this.isFail = false;

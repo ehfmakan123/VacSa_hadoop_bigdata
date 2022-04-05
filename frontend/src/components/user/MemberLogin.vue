@@ -13,10 +13,10 @@
             <b-alert show variant="danger" v-if="isLoginError"
               >아이디 또는 비밀번호를 확인하세요.</b-alert
             >
-            <b-form-group label="아이디:" label-for="userid">
+            <b-form-group label="아이디:" label-for="username">
               <b-form-input
-                id="userid"
-                v-model="user.userid"
+                id="username"
+                v-model="user.username"
                 required
                 placeholder="아이디 입력...."
                 @keyup.enter="confirm"
@@ -64,7 +64,7 @@ export default {
   data() {
     return {
       user: {
-        userid: null,
+        username: null,
         password: null,
       },
     };
@@ -73,23 +73,20 @@ export default {
     ...mapState(memberStore, ["isLogin", "isLoginError"]),
   },
   methods: {
-    ...mapActions(memberStore, [
-      "userConfirm",
-      "getUserInfo",
-      "getInterestArea",
-    ]),
+    ...mapActions(memberStore, ["userConfirm", "getUserInfo"]),
     async confirm() {
       await this.userConfirm(this.user);
-      let token = sessionStorage.getItem("access-token");
+      let token = sessionStorage.getItem("accessToken");
       if (this.isLogin) {
         await this.getUserInfo(token);
-
-        await this.getInterestArea(this.user.userid);
-        this.$router.push({ name: "Home" });
+        this.moveMain();
       }
     },
     movePage() {
       this.$router.push({ name: "MemberJoin" });
+    },
+    moveMain() {
+      this.$router.push({ name: "Starter" });
     },
   },
 };

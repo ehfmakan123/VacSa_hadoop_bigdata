@@ -1,27 +1,27 @@
 import Vue from "vue";
 import Router from "vue-router";
 
-import store from "@/store/Store.js";
+// import store from "@/store/Store.js";
 
 Vue.use(Router);
 
-const onlyAuthUser = async (to, from, next) => {
-  // console.log(store);
-  const checkUserInfo = store.getters["memberStore/checkUserInfo"];
-  const getUserInfo = store._actions["memberStore/getUserInfo"];
-  let token = sessionStorage.getItem("access-token");
-  if (checkUserInfo == null && token) {
-    await getUserInfo(token);
-  }
-  if (checkUserInfo === null) {
-    alert("로그인이 필요한 페이지입니다..");
-    // next({ name: "SignIn" });
-    router.push({ name: "SignIn" });
-  } else {
-    console.log("로그인 했다.");
-    next();
-  }
-};
+// const onlyAuthUser = async (to, from, next) => {
+//   // console.log(store);
+//   const checkUserInfo = store.getters["memberStore/checkUserInfo"];
+//   const getUserInfo = store._actions["memberStore/getUserInfo"];
+//   let token = sessionStorage.getItem("access-token");
+//   if (checkUserInfo == null && token) {
+//     await getUserInfo(token);
+//   }
+//   if (checkUserInfo === null) {
+//     alert("로그인이 필요한 페이지입니다..");
+//     // next({ name: "SignIn" });
+//     router.push({ name: "SignIn" });
+//   } else {
+//     console.log("로그인 했다.");
+//     next();
+//   }
+// };
 
 const router = new Router({
   mode: "history",
@@ -56,7 +56,7 @@ const router = new Router({
         {
           name: "Member",
           path: "/member",
-          beforeEnter: onlyAuthUser,
+          // beforeEnter: onlyAuthUser,
           component: () => import("@/views/Member"),
           children: [
             {
