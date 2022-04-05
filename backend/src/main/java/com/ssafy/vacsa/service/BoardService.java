@@ -11,5 +11,7 @@ public interface BoardService {
     BoardDto detail(Long boardId, String username) throws Exception; // 게시글 상세보기
     List<BoardDto> getBoardList(String username) throws Exception;
 
+    BoardDto boardDetail(Long boardId) throws Exception; // 게시글 상세보기 (username 없이)
     List<BoardDto> getBoardListTotal() throws Exception; // 게시글 전체 리스트
+    void modifyBoard(BoardDto boardDto) throws Exception; // 게시글 수정
 }

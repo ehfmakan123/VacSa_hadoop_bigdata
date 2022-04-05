@@ -45,4 +45,10 @@ public class Board {
 
     @CreationTimestamp  // 현재시간 입력
     private LocalDateTime boardCreateTime;
+
+    // 게시글 수정
+    public void  boardUpdate(String boardTitle, String boardContent){
+        this.boardTitle = boardTitle;
+        this.boardContent = boardContent;
+    }
 }

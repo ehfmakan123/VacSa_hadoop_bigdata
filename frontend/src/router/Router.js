@@ -54,6 +54,16 @@ const router = new Router({
           component: () => import("@/components/board/BoardWrite"),
         },
         {
+          name: "BoardDetail",
+          path: "/board/detail/:boardNo",
+          component: () => import("@/components/board/BoardDetail"),
+        },
+        {
+          name: "BoardEdit",
+          path: "/board/edit/:boardNo",
+          component: () => import("@/components/board/BoardEdit"),
+        },
+        {
           name: "Member",
           path: "/member",
           beforeEnter: onlyAuthUser,
