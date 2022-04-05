@@ -15,6 +15,6 @@ public interface BoardRepository extends JpaRepository<Board,Long> {
     Optional<Board> findByBoardId(Long boardComment);
 
     List<Board> findByOrderByBoardCreateTimeDesc();           //게시글 최신순 정렬
-
+    Optional<Board> findBoardByBoardId(Long boardId);
 
 }

@@ -62,6 +62,14 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
+    public BoardDto boardDetail(Long boardId) throws Exception { // 게시글 상세 보기
+        Board board = boardRepository.findById(boardId).get();  // 게시글 아이디로 해당 게시글 찾기
+        return new BoardDto(board);
+//        return new BoardDto(board.getBoardId(),board.getBoardTitle(),board.getAuthor().getUsername(),board.getBoardContent()
+//                ,LocalDate.from(board.getBoardCreateTime()),board.getAuthor()); // 해당 게시글 dto로 변환 후 리턴
+    }
+
+    @Override
     public List<BoardDto> getBoardListTotal() throws Exception {    // 게시글 전체 목록
         List<Board> list = boardRepository.findByOrderByBoardCreateTimeDesc(); //생성시간 내림차순으로 정렬 최신순으로
         List<BoardDto> dtoList = new ArrayList<>();
@@ -70,6 +78,14 @@ public class BoardServiceImpl implements BoardService {
             dtoList.add(dto);
         }
         return dtoList;
+    }
+
+    // 게시글 수정
+    @Override
+    public void modifyBoard(BoardDto boardDto) throws Exception {
+        Board boardcur = boardRepository.findBoardByBoardId(boardDto.getBoardId()).get();
+        boardcur.boardUpdate(boardDto.getBoardTitle(),boardDto.getBoardContent());
+        boardRepository.save(boardcur);
     }
 
     public List<BoardDto> convertEntityListToDtoList(List<Board> entityList) throws Exception{    //엔티티리스트 -> dto리스트 함수화화
