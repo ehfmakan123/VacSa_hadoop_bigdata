@@ -45,7 +45,7 @@
           <!-- -----------------------------------------------------------
             Profile Dropdown
           ----------------------------------------------------------- -->
-          <b-nav-item-dropdown right no-caret>
+          <b-nav-item-dropdown v-if="userInfo" right no-caret>
             <!-- Using 'button-content' slot -->
             <template #button-content>
               <img
@@ -61,12 +61,27 @@
             <b-dropdown-item
               href="#"
               class="d-flex align-items-center"
+              @click="logout"
+            >
+              로그아웃
+            </b-dropdown-item>
+          </b-nav-item-dropdown>
+          <b-nav-item-dropdown v-else right no-caret>
+            <!-- Using 'button-content' slot -->
+            <template #button-content>
+              <img
+                src="../../../assets/images/users/1.jpg"
+                alt="user"
+                class="rounded-circle"
+                width="31"
+              />
+            </template>
+            <b-dropdown-item
+              href="#"
+              class="d-flex align-items-center"
               @click="moveSignup"
             >
               회원가입
-            </b-dropdown-item>
-            <b-dropdown-item href="#" class="d-flex align-items-center">
-              로그아웃
             </b-dropdown-item>
             <b-dropdown-item
               href="#"
@@ -83,23 +98,32 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 import LogoDark from "../logo-dark/LogoDark";
 import LogoLight from "../logo-light/LogoLight";
 
+const memberStore = "memberStore";
 export default {
   name: "vertical-header",
   data: () => ({
     showToggle: false,
+    isLogin: false,
   }),
   components: {
     LogoDark,
     LogoLight,
   },
+  created() {},
   computed: {
     ...mapState(["navbarColor", "logoColor", "LayoutType"]),
+    ...mapState(memberStore, ["userInfo"]),
   },
   methods: {
+    ...mapMutations(memberStore, [
+      "SET_IS_LOGIN",
+      "SET_USER_INFO",
+      "SET_LOGOUT",
+    ]),
     showMobileSidebar() {
       this.$store.commit("SET_SIDEBAR_DRAWER", true);
     },
@@ -108,6 +132,13 @@ export default {
     },
     moveSignup() {
       this.$router.push({ name: "MemberJoin" });
+    },
+    logout() {
+      this.SET_IS_LOGIN(false);
+      console.log(this.isLogin);
+      this.SET_LOGOUT(null);
+      sessionStorage.removeItem("accessToken");
+      this.$router.push({ name: "Starter" });
     },
   },
 };

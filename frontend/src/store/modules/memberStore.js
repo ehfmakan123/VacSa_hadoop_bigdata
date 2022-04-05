@@ -29,6 +29,9 @@ const memberStore = {
         email: userInfo.email,
       };
     },
+    SET_LOGOUT: (state, userInfo) => {
+      state.userInfo = userInfo;
+    },
     SET_USER_INTERESTAREA: (state, interestarea) => {
       state.userInterestArea = interestarea;
     },
