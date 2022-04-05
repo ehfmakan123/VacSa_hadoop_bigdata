@@ -58,11 +58,22 @@
             <b-dropdown-item href="#" class="d-flex align-items-center">
               Profile
             </b-dropdown-item>
-            <b-dropdown-item href="#" class="d-flex align-items-center">
-              Settings
+            <b-dropdown-item
+              href="#"
+              class="d-flex align-items-center"
+              @click="moveSignup"
+            >
+              회원가입
             </b-dropdown-item>
             <b-dropdown-item href="#" class="d-flex align-items-center">
-              Sign out
+              로그아웃
+            </b-dropdown-item>
+            <b-dropdown-item
+              href="#"
+              class="d-flex align-items-center"
+              @click="moveLogin"
+            >
+              로그인
             </b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
@@ -92,6 +103,17 @@ export default {
     showMobileSidebar() {
       this.$store.commit("SET_SIDEBAR_DRAWER", true);
     },
+    moveLogin() {
+      this.$router.push({ name: "MemberLogin" });
+    },
+    moveSignup() {
+      this.$router.push({ name: "MemberJoin" });
+    },
   },
 };
 </script>
+<style>
+/* .signIn{
+    display: none;
+  } */
+</style>

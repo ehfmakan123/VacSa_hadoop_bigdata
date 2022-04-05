@@ -61,6 +61,17 @@ public class BoardServiceImpl implements BoardService {
         return dtoList;
     }
 
+    @Override
+    public List<BoardDto> getBoardListTotal() throws Exception {    // 게시글 전체 목록
+        List<Board> list = boardRepository.findByOrderByBoardCreateTimeDesc(); //생성시간 내림차순으로 정렬 최신순으로
+        List<BoardDto> dtoList = new ArrayList<>();
+        for (Board entity: list) {
+            BoardDto dto = new BoardDto(entity);
+            dtoList.add(dto);
+        }
+        return dtoList;
+    }
+
     public List<BoardDto> convertEntityListToDtoList(List<Board> entityList) throws Exception{    //엔티티리스트 -> dto리스트 함수화화
        List<BoardDto> dtoList = new ArrayList<>();
         for (Board entity: entityList) {

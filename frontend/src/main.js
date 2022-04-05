@@ -11,9 +11,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import memberStore from "./store/modules/memberStore";
 
-// Make BootstrapVue available throughout your project
 Vue.use(BootstrapVue);
-// Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin);
 
 Vue.config.productionTip = false;
@@ -27,5 +25,5 @@ new Vue({
       await memberStore.dispatch("getUserInfo", token);
     }
   },
-  render: h => h(App),
+  render: (h) => h(App),
 }).$mount("#app");

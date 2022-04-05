@@ -22,11 +22,11 @@
                 @keyup.enter="confirm"
               ></b-form-input>
             </b-form-group>
-            <b-form-group label="비밀번호:" label-for="userpwd">
+            <b-form-group label="비밀번호:" label-for="password">
               <b-form-input
                 type="password"
-                id="userpwd"
-                v-model="user.userpwd"
+                id="password"
+                v-model="user.password"
                 required
                 placeholder="비밀번호 입력...."
                 @keyup.enter="confirm"
@@ -65,7 +65,7 @@ export default {
     return {
       user: {
         userid: null,
-        userpwd: null,
+        password: null,
       },
     };
   },
@@ -89,7 +89,7 @@ export default {
       }
     },
     movePage() {
-      this.$router.push({ name: "SignUp" });
+      this.$router.push({ name: "MemberJoin" });
     },
   },
 };
