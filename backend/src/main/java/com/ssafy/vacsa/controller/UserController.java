@@ -207,15 +207,15 @@ public class UserController {
     }
 
     @ApiOperation(value = "아이디 찾기")
-    @GetMapping("/findid")
-    public ResponseEntity<Map<String,Object>> findId(@RequestParam @ApiParam(value = "이메일 정보") String userEmail) throws Exception {
+    @GetMapping("info/${username}")
+    public ResponseEntity<Map<String,Object>> findId(@PathVariable @ApiParam(value = "아이디") String username) throws Exception {
         Map<String,Object> resultMap = new HashMap<>();
         HttpStatus status = null;
         try {
-            if(!userService.emailCheck(userEmail)){//이메일이 존재하는 경우
-                emailConfirmationService.createEmailConfirmationToken(userEmail);
+            if(!userService.emailCheck(username)){//이메일이 존재하는 경우
+                emailConfirmationService.createEmailConfirmationToken(username);
                 resultMap.put("message",SUCCESS);
-                resultMap.put("userId",userService.findId(userEmail));
+                resultMap.put("userInfo",userService.findId(username));
             }else{
                 resultMap.put("message", FAIL);
             }

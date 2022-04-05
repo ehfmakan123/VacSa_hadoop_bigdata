@@ -102,9 +102,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String findId(String email) throws Exception {
-        String userName = userRepository.findByEmail(email).get().getUsername();
-        return userName;
+    public UserDto findId(String username) throws Exception {
+        User user = userRepository.findByUsername(username).get();
+        return new UserDto(user);
     }
 
     // 비밀번호 변경
