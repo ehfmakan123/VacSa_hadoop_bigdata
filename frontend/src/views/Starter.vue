@@ -6,30 +6,30 @@
     <b-row>
       <b-col cols="12" md="6" lg="3">
         <b-card class="mb-4">
-          <h4 class="card-title mb-1">87.6%</h4>
+          <h4 class="card-title mb-1">{{data1.toFixed(1)}}%</h4>
           <b-card-text class="mb-2">전국 1차 접종</b-card-text>
-          <b-progress value="87" max="100"></b-progress>
+          <b-progress variant = "success" v-model="data1" max="100"></b-progress>
         </b-card>
       </b-col>
       <b-col cols="12" md="6" lg="3">
         <b-card class="mb-4">
-          <h4 class="card-title mb-1">63.7%</h4>
+          <h4 class="card-title mb-1">{{data2.toFixed(1)}}%</h4>
           <b-card-text class="mb-2">전국 3차 접종</b-card-text>
-          <b-progress variant="danger" value="63" max="100"></b-progress>
+          <b-progress variant="primary" v-model="data2" max="100"></b-progress>
         </b-card>
       </b-col>
       <b-col cols="12" md="6" lg="3">
         <b-card class="mb-4">
-          <h4 class="card-title mb-1">424,641명</h4>
-          <b-card-text class="mb-2">일일 확진자 수</b-card-text>
-          <b-progress variant="success" value="50" max="100"></b-progress>
+          <h4 class="card-title mb-1 " style="white-space:pre-line">{{(field/10000).toFixed(0)}}만명 확진</h4>
+          <b-card-text class="mb-2">누적 확진자 수 {{decnt}}%</b-card-text>
+          <b-progress variant="warning" v-model="decnt" max="100"></b-progress>
         </b-card>
       </b-col>
       <b-col cols="12" md="6" lg="3">
         <b-card class="mb-4">
-          <h4 class="card-title mb-1">432명</h4>
-          <b-card-text class="mb-2">일일 사망자 수</b-card-text>
-          <b-progress variant="warning" value="30" max="100"></b-progress>
+          <h4 class="card-title mb-1">{{field2}}명 사망</h4>
+          <b-card-text class="mb-2">누적 사망자 수</b-card-text>
+          <b-progress variant="danger" value="30" max="100"></b-progress>
         </b-card>
       </b-col>
     </b-row>
@@ -76,19 +76,15 @@
       </b-col>
     </b-row>
 
+
+      <!-- <div>{{decnt}}</div> -->
     <!-- ----------------------------------------------- -->
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+
     <br>
     <br>
     <br>
 
-    <b-row>
+    <!-- <b-row>
       <b-col cols="12" lg="8">
         <b-card class="mb-4">
           <h4 class="card-title">Sales Summary</h4>
@@ -101,11 +97,11 @@
           <SalesIncome />
         </b-card>
       </b-col>
-    </b-row>
+    </b-row> -->
     <!-- ----------------------------------------------- -->
     <!-- top selling products -->
     <!-- ----------------------------------------------- -->
-    <b-card class="mb-4" no-body>
+    <!-- <b-card class="mb-4" no-body>
       <b-card-body>
         <h4 class="card-title">Top Selling Products</h4>
         <h6 class="card-subtitle font-weight-normal text-muted">
@@ -114,13 +110,16 @@
       </b-card-body>
       <SellingProduct />
     </b-card>
+    <div>
+      
+    </div> -->
     <!-- ----------------------------------------------- -->
     <!-- end top selling products -->
     <!-- ----------------------------------------------- -->
     <!-- ----------------------------------------------- -->
     <!-- cards row -->
     <!-- ----------------------------------------------- -->
-    <TopCards />
+    <!-- <TopCards /> -->
     <!-- ----------------------------------------------- -->
     <!-- end cards row -->
     <!-- ----------------------------------------------- -->
@@ -134,23 +133,62 @@ import InfoText2 from "./dashboard-components/InfoText2";
 import InfoText3 from "./dashboard-components/InfoText3";
 import InfoText4 from "./dashboard-components/InfoText4";
 
-import SalesSummary from "./dashboard-components/SalesSummary";
+// import SalesSummary from "./dashboard-components/SalesSummary";
 import SalesIncome from "./dashboard-components/SalesIncome";
-import SellingProduct from "./dashboard-components/SellingProduct";
-import TopCards from "./dashboard-components/TopCards";
+// import SellingProduct from "./dashboard-components/SellingProduct";
+// import TopCards from "./dashboard-components/TopCards";
+import axios from 'axios';
+
+
 export default {
   name: "Starter",
-  data: () => ({}),
+  data(){
+    return{
+      data1: [],
+      data2: [],
+      field:[],
+    }
+  },
   components: {
     Infection,
     InfoText1,
     InfoText2,
     InfoText3,
     InfoText4,
-    SalesSummary,
+    // SalesSummary,
     SalesIncome,
-    SellingProduct,
-    TopCards,
+    // SellingProduct,
+    // TopCards,
   },
+  created(){
+    var vm = this;
+    axios.get('https://nip.kdca.go.kr/irgd/cov19stats.do?list=all')
+    .then(function(response){
+      //console.log(response);
+      vm.data1 = response.data.substring(458,466);
+      vm.data1 = Number(vm.data1);
+      vm.data1 = vm.data1/51638809 * 100;
+      vm.data2 = response.data.substring(520,528);
+      vm.data2 = Number(vm.data2);
+      vm.data2 = vm.data2/51638809 * 100;
+    })
+    .catch(function(error){
+      console.log(error);
+    });
+  
+    axios.get('http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson?serviceKey=Mo7exllHksroP%2BskN4M7XGw%2FLNhgZ3HNCV%2BZkPLkAJvPpGb21ckO%2F6KynGVAf4dMAbe%2F6a7COLv2g252FeE%2FFw%3D%3D&pageNo=1&numOfRows=1&startCreateDt=20220310')
+    .then(function(response){
+      vm.field = response.data.response.body.items.item.decideCnt;
+      vm.field2 = response.data.response.body.items.item.deathCnt;
+      vm.decnt = (vm.field/600000).toFixed(1); // 누적 확진자 비율 (확진자 / 전국민)
+    })
+    .catch(function(error){
+      console.log(error)
+    })
+
+    
+  },
+  
 };
 </script>
+
