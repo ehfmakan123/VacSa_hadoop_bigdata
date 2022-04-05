@@ -26,7 +26,7 @@
           </li>
         </template>
       </ul>
-      <div class="text-center px-3">
+      <!-- <div class="text-center px-3">
         <b-button
           target="_blank"
           variant="info"
@@ -34,7 +34,7 @@
           href="https://www.wrappixel.com/templates/xtreme-vuesax-admin-pro/"
           >Upgrade to Pro</b-button
         >
-      </div>
+      </div> -->
     </div>
   </aside>
 </template>
