@@ -13,11 +13,11 @@
             <!-- <b-alert show variant="danger" v-if="isLoginError"
               >아이디 또는 비밀번호를 확인하세요.</b-alert
             > -->
-            <b-form-group label="아이디:" label-for="userid">
+            <b-form-group label="아이디:" label-for="username">
               <b-form-input
-                id="userid"
-                v-model="user.userid"
-                ref="userid"
+                id="username"
+                v-model="user.username"
+                ref="username"
                 required
                 @keyup="checkIdRepeat"
                 placeholder="아이디 입력...."
@@ -31,21 +31,21 @@
               }"
               v-html="idresult"
             ></div>
-            <b-form-group label="이름:" label-for="username">
+            <b-form-group label="닉네임:" label-for="nickname">
               <b-form-input
-                id="username"
-                v-model="user.username"
-                ref="username"
+                id="nickname"
+                v-model="user.nickname"
+                ref="nickname"
                 required
-                placeholder="이름 입력...."
+                placeholder="닉네임 입력...."
               ></b-form-input>
             </b-form-group>
-            <b-form-group label="비밀번호:" label-for="userpwd">
+            <b-form-group label="비밀번호:" label-for="password">
               <b-form-input
                 type="password"
-                id="userpwd"
-                v-model="user.userpwd"
-                ref="userpwd"
+                id="password"
+                v-model="user.password"
+                ref="password"
                 required
                 placeholder="비밀번호 입력...."
               ></b-form-input>
@@ -78,14 +78,7 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapMutations } from "vuex";
-import {
-  registerUser,
-  checkRepeatIdById,
-  insertInterestAreaById,
-} from "../../api/member.js";
-const houseStore = "houseStore";
-const memberStore = "memberStore";
+import { registerUser, checkRepeatIdById } from "../../api/member.js";
 
 export default {
   name: "MemberJoin",
@@ -93,70 +86,39 @@ export default {
   data() {
     return {
       user: {
-        userid: null,
         username: null,
-        userpwd: null,
+        password: null,
         email: null,
-        interestarea: null,
+        nickname: null,
       },
       idresult: "",
       isSuccess: false,
       isFail: false,
       idLenValidate: false,
-      sidoCode: null,
-      gugunCode: null,
-      dongCode: null,
     };
-  },
-  created() {
-    this.SET_USER_INTERESTAREA([]);
-    this.CLEAR_SIDO_LIST();
-    this.getSido();
-  },
-  computed: {
-    ...mapState(houseStore, ["sidos", "guguns", "dongs", "houses"]),
-    ...mapState(memberStore, ["userInterestArea"]),
   },
 
   methods: {
-    ...mapActions(houseStore, [
-      "getSido",
-      "getGugun",
-      "getDong",
-      "getHouseList",
-      "getDBHouseList",
-    ]),
-    ...mapMutations(houseStore, [
-      "CLEAR_SIDO_LIST",
-      "CLEAR_GUGUN_LIST",
-      "CLEAR_DONG_LIST",
-    ]),
-    ...mapMutations(memberStore, [
-      "ADD_AREA_INTERESTAREA",
-      "SET_USER_INTERESTAREA",
-    ]),
-    ...mapActions(memberStore, ["insertInterestArea"]),
-
     checkValue() {
       console.log(this.user);
       // 사용자 입력값 체크하기
       // 아이디, 이름, 비밀번호, 이메일 이 없을 경우 각 항목에 맞는 메세지를 출력
       let err = true;
       let msg = "";
-      !this.user.userid &&
+      !this.user.username &&
         ((msg = "아이디 입력해주세요"),
         (err = false),
-        this.$refs.userid.focus());
+        this.$refs.username.focus());
       err &&
         this.isFail &&
         ((msg = "중복된 아이디 입니다. 변경해주세요."),
         (err = false),
-        this.$refs.userid.focus());
+        this.$refs.username.focus());
       err &&
         !this.idLenValidate &&
         ((msg = "아이디 길이가 이상합니다. 변경해주세요"),
         (err = false),
-        this.$refs.userid.focus());
+        this.$refs.username.focus());
 
       err &&
         !this.user.username &&
@@ -164,10 +126,10 @@ export default {
         (err = false),
         this.$refs.username.focus());
       err &&
-        !this.user.userpwd &&
+        !this.user.password &&
         ((msg = "비밀번호 입력해주세요"),
         (err = false),
-        this.$refs.userpwd.focus());
+        this.$refs.password.focus());
       err &&
         !this.user.email &&
         ((msg = "이메일 입력해주세요"),
@@ -180,30 +142,29 @@ export default {
     },
     //취소버튼 클릭시 로그인 화면으로
     cancel() {
-      this.$router.push({ name: "SignIn" });
+      this.$router.push({ name: "MemberLogin" });
     },
     //입력이 다 되어있다면 register호출
     register() {
       registerUser(this.user);
-      this.insertInterestArea();
-      this.$router.push({ name: "Home" });
+      this.$router.push({ name: "Starter" });
     },
 
     // 아이디 중복검사
     checkIdRepeat() {
       // 키가 눌릴 때마다 아이디 중복검사
-      var ckid = this.user.userid;
+      var ckid = this.user.username;
       if (ckid.length < 4 || ckid.length > 16) {
         this.idresult = "아이디는 6자이상 16자이하입니다.";
         //console.log(ckid);
-        this.$refs.userid.focus();
+        this.$refs.username.focus();
         this.isSuccess = false;
         this.isFail = false;
         this.idLenValidate = false;
         return;
       } else {
         this.idLenValidate = true;
-        checkRepeatIdById(this.user.userid, response => {
+        checkRepeatIdById(this.user.username, (response) => {
           if (response.data == 1) {
             this.idresult = `<b>${ckid}</b>는 이미 사용중입니다. 사용할 수 없습니다.`;
             this.isFail = true;
@@ -214,39 +175,6 @@ export default {
             this.isFail = false;
           }
         });
-      }
-    },
-    gugunList() {
-      // console.log(this.sidoCode);
-      console.log("시도코드", this.sidoCode);
-      this.CLEAR_GUGUN_LIST();
-      this.gugunCode = null;
-      if (this.sidoCode) this.getGugun(this.sidoCode);
-    },
-    dongList() {
-      console.log("구군코드", this.gugunCode);
-      // this.$store.commi("CLEAR_GUGUN_LIST");
-      this.CLEAR_DONG_LIST();
-      this.dongCode = null;
-      if (this.gugunCode) this.getDong(this.gugunCode);
-    },
-    registInterestArea() {
-      this.user.interestarea = this.dongCode;
-      console.log(this.dongCode);
-    },
-    async addInterArea() {
-      // console.log();
-      if (this.dongCode && !this.userInterestArea.includes(this.dongCode)) {
-        this.ADD_AREA_INTERESTAREA(this.dongCode);
-      } else {
-        alert("제대로선택");
-      }
-    },
-    async insertInterestArea() {
-      for (const area of this.userInterestArea) {
-        let param = { userid: this.user.userid, area: area };
-        console.log(param);
-        await insertInterestAreaById(param);
       }
     },
   },
