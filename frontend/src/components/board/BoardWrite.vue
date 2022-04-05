@@ -30,6 +30,8 @@
 <script>
 import Editor from "@/components/board/Editor";
 import { writeBoardAPI } from "@/api/board";
+import { mapState } from "vuex";
+const memberStore = "memberStore";
 export default {
   name: "BoardWrite",
   components: {
@@ -39,7 +41,9 @@ export default {
     rules: [(value) => !!value || "Required."],
     title: "",
   }),
-
+  computed: {
+    ...mapState(memberStore, ["userInfo"]),
+  },
   methods: {
     moveList() {
       this.$router.push({ name: "Board" });
@@ -52,7 +56,7 @@ export default {
       }
       var content = this.$refs.editor.getContent();
       var title = this.title;
-      var username = "ssafy";
+      var username = this.userInfo.username;
       writeBoardAPI(
         // 서버로 전송하는 request 값
         {
