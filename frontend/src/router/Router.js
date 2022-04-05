@@ -49,6 +49,11 @@ const router = new Router({
           component: () => import("@/views/Board"),
         },
         {
+          name: "BoardWrite",
+          path: "/board/wirte",
+          component: () => import("@/components/board/BoardWrite"),
+        },
+        {
           name: "Member",
           path: "/member",
           beforeEnter: onlyAuthUser,

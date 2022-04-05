@@ -25,6 +25,9 @@ public class BoardController {
     @ApiOperation(value = "게시글 생성", notes = "게시글 정보를 입력한다.")
     @PostMapping("/create")
     public ResponseEntity<Map<String,Object>> createVote(@RequestBody BoardDto boardDto) throws Exception {
+        System.out.println(boardDto.getBoardTitle());
+        System.out.println(boardDto.getBoardContent());
+        System.out.println(boardDto.getAuthor());
         Long boardId = boardService.create(boardDto);
         Map<String,Object> resultMap = new HashMap<>();
         resultMap.put("message",SUCCESS);
@@ -46,10 +49,17 @@ public class BoardController {
         return new ResponseEntity<BoardDto>(boardService.detail(boardId,username), HttpStatus.OK);
     }
 
+//    @ApiOperation(value = "게시글 전체목록")
+//    @GetMapping
+//    public ResponseEntity<List<BoardDto>> getVoteList(@RequestParam(required = false) @ApiParam(value = "로그인한 유저 아이디") String username) throws Exception{
+//        List<BoardDto> list = boardService.getBoardList(username);
+//        return new ResponseEntity<>(list,HttpStatus.OK);
+//    }
+
     @ApiOperation(value = "게시글 전체목록")
     @GetMapping
-    public ResponseEntity<List<BoardDto>> getVoteList(@RequestParam(required = false) @ApiParam(value = "로그인한 유저 아이디") String username) throws Exception{
-        List<BoardDto> list = boardService.getBoardList(username);
+    public ResponseEntity<List<BoardDto>> getBoardList() throws Exception{
+        List<BoardDto> list = boardService.getBoardListTotal();
         return new ResponseEntity<>(list,HttpStatus.OK);
     }
 }

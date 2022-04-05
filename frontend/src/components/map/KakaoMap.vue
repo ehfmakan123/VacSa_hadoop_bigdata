@@ -68,6 +68,7 @@ export default {
   methods: {
     initMap() {
       const mapContainer = document.getElementById("map");
+      console.log(`${VUE_APP_KAKAO_KEY}`);
 
       if (navigator.geolocation) {
         // 사용자가 위치 동의 한 경우
