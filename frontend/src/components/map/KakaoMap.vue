@@ -4,16 +4,16 @@
     <div class="map_wrap">
       <div id="map">
         <ul id="category">
-          <li id="animalHos" data-order="0">
-            <span class="category_bg bank"></span>
+          <li id="screening" data-order="2">
+            <span class="category_bg pharmacy"></span>
             진료소
           </li>
-          <li id="park" data-order="2">
+          <li id="HP8" data-order="2">
             <span class="category_bg pharmacy"></span>
             병원
           </li>
-          <li id="PM9" data-order="1">
-            <span class="category_bg mart"></span>
+          <li id="PM9" data-order="2">
+            <span class="category_bg pharmacy"></span>
             약국
           </li>
           <!--
@@ -38,15 +38,15 @@
 </template>
 
 <script>
-import { VUE_APP_KAKAO_KEY } from "@/config/index";
+// import { VUE_APP_KAKAO_KEY } from "@/config/index";
 export default {
   name: "KakaoMap",
   data() {
     return {
       map: null,
       around: {
-        aniHos: 0,
-        park: 0,
+        animalHos: 0,
+        hospital: 0,
         phar: 0,
         pet: 0,
         cafe: 0,
@@ -59,16 +59,16 @@ export default {
       this.initMap();
     } else {
       const script = document.createElement("script");
+      const APP_KEY = "25fdf682e8691d8145d06898a8ffa361";
       /* global kakao */
       script.onload = () => kakao.maps.load(this.initMap);
-      script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${VUE_APP_KAKAO_KEY}&libraries=services`;
+      script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${APP_KEY}&libraries=services`;
       document.head.appendChild(script);
     }
   },
   methods: {
     initMap() {
       const mapContainer = document.getElementById("map");
-      console.log(`${VUE_APP_KAKAO_KEY}`);
 
       if (navigator.geolocation) {
         // 사용자가 위치 동의 한 경우
@@ -95,8 +95,8 @@ export default {
           var ps = new kakao.maps.services.Places(map);
 
           let around = {
-            aniHos: 0,
-            park: 0,
+            animalHos: 0,
+            hospital: 0,
             phar: 0,
             pet: 0,
             cafe: 0,
@@ -152,10 +152,10 @@ export default {
 
           // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
           function placesSearchCB(data, status) {
-            if (currCategory === "animalHos") {
-              around.aniHos = data.length;
-            } else if (currCategory === "park") {
-              around.park = data.length;
+            if (currCategory === "screening") {
+              around.animalHos = data.length;
+            } else if (currCategory === "HP8") {
+              around.hospital = data.length;
             } else if (currCategory === "PM9") {
               around.phar = data.length;
             } else if (currCategory === "petShop") {
@@ -165,8 +165,8 @@ export default {
             } else if (currCategory === "SC4") {
               around.schl = data.length;
             }
-            var scoreboard = document.getElementById("scoreboard");
-            scoreboard.innerText = data.length + "개 ";
+            // var scoreboard = document.getElementById("scoreboard");
+            // scoreboard.innerText = data.length + "개 ";
             if (status === kakao.maps.services.Status.OK) {
               // 정상적으로 검색이 완료됐으면 지도에 마커를 표출합니다
               displayPlaces(data);
@@ -303,14 +303,14 @@ export default {
               currCategory = "";
               changeCategoryClass();
               removeMarker();
-            } else if (id === "animalHos") {
+            } else if (id === "screening") {
               currCategory = id;
               changeCategoryClass(this);
               searchByKey("선별진료소");
-            } else if (id === "park") {
-              currCategory = id;
-              changeCategoryClass(this);
-              searchByKey("병원");
+              // } else if (id === "hospital") {
+              //   currCategory = id;
+              //   changeCategoryClass(this);
+              //   searchByKey("병원");
             } else if (id === "petShop") {
               currCategory = id;
               changeCategoryClass(this);
@@ -359,6 +359,9 @@ export default {
         marker.setMap(map);
       }
     },
+  },
+  updated() {
+    this.initMap();
   },
 };
 </script>
