@@ -1,20 +1,18 @@
 <template>
   <b-tr>
-    <b-td>{{ commentUser }}</b-td>
-    <b-td v-if="con">{{ replyContent }}</b-td>
-    <b-td>{{ commentCreateTime }}</b-td>
-
+    <b-td class="col-md-2">{{ commentUser }}</b-td>
+    <b-td class="col-md-5" v-if="con">{{ replyContent }}</b-td>
     <b-td>
       <b-form-textarea
         class="replyContent"
         placeholder="내용 입력"
         rows="2"
-        max-rows="10"
         size="sm"
         v-model="content"
         v-if="update"
       />
     </b-td>
+    <b-td class="col-md-2">{{ commentCreateTime }}</b-td>
     <b-td v-if="userInfo">
       <b-button
         type="button"
@@ -35,13 +33,22 @@
         v-if="update"
         ><b-icon icon="check2"></b-icon>
       </b-button>
+      <b-button
+        type="button"
+        variant="outline-danger"
+        class="m-1"
+        size="sm"
+        @click="deleteReply(commentId)"
+        v-if="userInfo.username == commentUser && !update"
+        >삭제
+      </b-button>
     </b-td>
   </b-tr>
 </template>
 
 <script>
 import { mapState } from "vuex";
-import { updateReply } from "@/api/reply.js";
+import { updateReply, deleteReply } from "@/api/reply.js";
 import moment from "moment";
 const memberStore = "memberStore";
 
@@ -73,6 +80,13 @@ export default {
     ...mapState(memberStore, ["userInfo"]),
   },
   methods: {
+    deleteReply(commentId) {
+      if (confirm("삭제하시겠습니까?")) {
+        deleteReply(commentId, () => {
+          location.reload();
+        });
+      }
+    },
     updateForm() {
       this.update = !this.update;
       this.con = !this.con;
