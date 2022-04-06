@@ -1,7 +1,7 @@
 <template>
   <b-card elevation="10" outlined width="100%" class="mx-auto">
     <b-card-title>
-      <span class="mr-2">Detail</span>
+      <!-- <span class="mr-2">Detail</span> -->
     </b-card-title>
     <b-row class="mb-1">
       <b-col>
@@ -20,31 +20,12 @@
         </b-card>
       </b-col>
     </b-row>
-    <!-- <b-card>
-      <b-card-title>
-        <b-form-input id="Title" plaintext :value="`${board.boardTitle}`" />
-      </b-card-title>
-    </b-card>
+    <reply-list />
+    <reply-write :boardNo="board.boardId" />
     <b-card-text>
-      <b-row>
-        <b-col>
-          <b-form-input id="Title" plaintext :value="title" />
-        </b-col>
-      </b-row>
-      <b-row>
-        <b-col>
-          <b-form-input id="writer" plaintext :value="writer" />
-        </b-col>
-        <b-col>
-          <b-form-input id="Register Time" plaintext :value="regDttm" />
-        </b-col>
-      </b-row>
-    </b-card-text> -->
-    <b-card-actions>
       <b-button-group class="btn float-right" size="sm">
         <!-- 수정, 삭제 시 로그인한 사용자==작성자 체크 필요 -->
         <b-button type="button" variant="primary" @click="moveEditBoard">
-          <!-- @click="movePage('/edit?docNo=' + docNo)"> -->
           <b-icon icon="pencil"></b-icon>
           수정
         </b-button>
@@ -57,17 +38,21 @@
         <b-icon icon="arrow-left"></b-icon>
         목록
       </b-button>
-    </b-card-actions>
+    </b-card-text>
   </b-card>
 </template>
 <script>
 import Viewer from "@/components/board/Viewer";
 import { getBoardDetailAPI, deleteBoardAPI } from "@/api/board";
+import ReplyWrite from "@/components/board/reply/ReplyWrite";
+import ReplyList from "@/components/board/reply/ReplyList";
 
 export default {
   name: "BoardDetail",
   components: {
     Viewer,
+    ReplyWrite,
+    ReplyList,
   },
   data() {
     return {
@@ -82,7 +67,6 @@ export default {
     getBoardDetailAPI(
       this.$route.params.boardNo,
       (response) => {
-        console.log(response.data);
         this.board = response.data;
         this.boardId = response.data.boardId;
         this.title = response.data.boardTitle;
