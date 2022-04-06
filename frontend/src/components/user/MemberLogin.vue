@@ -78,6 +78,7 @@ export default {
       await this.userConfirm(this.user);
       let token = sessionStorage.getItem("accessToken");
       if (this.isLogin) {
+        console.log("getUserInfo 전");
         await this.getUserInfo(token);
         this.moveMain();
       }

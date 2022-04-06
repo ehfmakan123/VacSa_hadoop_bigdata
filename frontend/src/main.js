@@ -9,7 +9,7 @@ import App from "./App.vue";
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
-import memberStore from "./store/modules/memberStore";
+// import memberStore from "./store/modules/memberStore";
 
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
@@ -17,13 +17,12 @@ Vue.use(IconsPlugin);
 Vue.config.productionTip = false;
 
 new Vue({
-  store,
   router,
+  store,
   async beforeCreate() {
-    let token = sessionStorage.getItem("access-token");
-    if (memberStore.state.userInfo == null && token) {
-      await memberStore.dispatch("getUserInfo", token);
-    }
+    // 새로고침시 로그인 풀리는거 방지
+    let token = sessionStorage.getItem("accessToken");
+    await this.$store.dispatch("memberStore/getUserInfo", token);
   },
   render: (h) => h(App),
 }).$mount("#app");
