@@ -24,7 +24,7 @@ public class CommentDto {
     @ApiModelProperty(value = "댓글 작성 유저 닉네임")
     private String commentUserNickname;
     @ApiModelProperty(value = "댓글이 작성된 게시글의 id")
-    private Long BoardComment;
+    private Long boardComment;
     @ApiModelProperty(value = "댓글의 내용")
     private String commentContent;
     @ApiModelProperty(value = "댓글의 생성 시간")
@@ -34,7 +34,7 @@ public class CommentDto {
         this.commentId = comment.getCommentId();
         this.commentUser = comment.getCommentUser().getUsername();
         this.commentUserNickname = comment.getCommentUser().getNickname();
-        this.BoardComment = comment.getBoardComment().getBoardId();
+        this.boardComment = comment.getBoardComment().getBoardId();
         this.commentContent = comment.getCommentContent();
         this.commentCreateTime = LocalDateTime.from(comment.getCommentCreateTime());
     }
