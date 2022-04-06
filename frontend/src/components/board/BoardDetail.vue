@@ -23,8 +23,11 @@
     <reply-list />
     <reply-write :boardNo="board.boardId" />
     <b-card-text>
-      <b-button-group class="btn float-right" size="sm">
-        <!-- 수정, 삭제 시 로그인한 사용자==작성자 체크 필요 -->
+      <b-button-group
+        class="btn float-right"
+        size="sm"
+        v-if="userInfo.username == board.author"
+      >
         <b-button type="button" variant="primary" @click="moveEditBoard">
           <b-icon icon="pencil"></b-icon>
           수정
@@ -42,11 +45,12 @@
   </b-card>
 </template>
 <script>
+import { mapState } from "vuex";
 import Viewer from "@/components/board/Viewer";
 import { getBoardDetailAPI, deleteBoardAPI } from "@/api/board";
 import ReplyWrite from "@/components/board/reply/ReplyWrite";
 import ReplyList from "@/components/board/reply/ReplyList";
-
+const memberStore = "memberStore";
 export default {
   name: "BoardDetail",
   components: {
@@ -80,6 +84,7 @@ export default {
     );
   },
   computed: {
+    ...mapState(memberStore, ["userInfo"]),
     message() {
       if (this.board.boardContent)
         return this.board.boardContent.split("\n").join("<br>");
