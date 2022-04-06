@@ -64,6 +64,7 @@ const memberStore = {
     },
     async getUserInfo({ commit }, token) {
       let decode_token = jwt_decode(token);
+      console.log("로그인");
       await findById(
         decode_token.userId,
         (response) => {
