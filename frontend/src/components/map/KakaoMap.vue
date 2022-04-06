@@ -59,7 +59,11 @@ export default {
       this.initMap();
     } else {
       const script = document.createElement("script");
+<<<<<<< HEAD
       const APP_KEY = "652423198fc0f32e59124c6e8de24920";
+=======
+      const APP_KEY = "25fdf682e8691d8145d06898a8ffa361";
+>>>>>>> d02670e3e8dbd71944f9b596e5ed62d245cf6427
       /* global kakao */
       script.onload = () => kakao.maps.load(this.initMap);
       script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${APP_KEY}&libraries=services`;
