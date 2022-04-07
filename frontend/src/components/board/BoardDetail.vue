@@ -33,7 +33,7 @@
       <b-button-group
         class="btn float-right"
         size="sm"
-        v-if="userInfo && userInfo.username == board.author"
+        v-if="userInfo && userInfo.nickname == board.author"
       >
         <b-button type="button" variant="primary" @click="moveEditBoard">
           <b-icon icon="pencil"></b-icon>
