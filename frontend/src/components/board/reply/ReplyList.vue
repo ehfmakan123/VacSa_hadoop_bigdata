@@ -1,12 +1,12 @@
 <template>
-  <b-table-simple>
-    <tbody>
+  <b-table-simple style="text-align:center;">
+    <b-tbody>
       <reply-list-row
         v-for="(reply, index) in replies"
         :key="index"
         v-bind="reply"
       />
-    </tbody>
+    </b-tbody>
   </b-table-simple>
 </template>
 

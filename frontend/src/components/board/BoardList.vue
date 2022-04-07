@@ -17,7 +17,12 @@
         </b-col>
       </b-row>
       <div>
-        <b-table-simple hover responsive @row-clicked="rowClick">
+        <b-table-simple
+          hover
+          responsive
+          style="text-align:center;"
+          @row-clicked="rowClick"
+        >
           <b-thead head-variant="light">
             <b-tr>
               <b-th>글번호</b-th>
