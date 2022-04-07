@@ -139,12 +139,11 @@ import SalesIncome from "./dashboard-components/SalesIncome";
 // import SellingProduct from "./dashboard-components/SellingProduct";
 // import TopCards from "./dashboard-components/TopCards";
 import axios from "axios";
-import AxiosPlugin from "vue-axios-cors";
-axios.defaults.withCredentials = true;
-Vue.use(AxiosPlugin);
-axios.defaults.headers.common["Content-Type"] =
-  "application/x-www-form-urlencoded";
-axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
+// import AxiosPlugin from "vue-axios-cors";
+// axios.defaults.withCredentials = true;
+// Vue.use(AxiosPlugin);
+// axios.defaults.headers.common["Content-Type"] =
+// "application/x-www-form-urlencoded";
 
 export default {
   name: "Starter",
