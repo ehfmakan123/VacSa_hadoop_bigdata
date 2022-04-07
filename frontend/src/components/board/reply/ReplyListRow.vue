@@ -1,7 +1,9 @@
 <template>
   <b-tr>
     <b-td class="col-md-2">{{ commentUser }}</b-td>
-    <b-td class="col-md-5" v-if="con">{{ replyContent }}</b-td>
+    <b-td class="col-md-5" style="text-align:left;" v-if="con">{{
+      replyContent
+    }}</b-td>
     <b-td>
       <b-form-textarea
         class="replyContent"
@@ -101,9 +103,8 @@ export default {
         },
         ({ data }) => {
           if (data === "success") {
-            alert("수정 완료");
+            location.reload();
           }
-          location.reload();
         },
         (error) => {
           console.log(error);

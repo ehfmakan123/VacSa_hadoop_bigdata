@@ -1,7 +1,12 @@
 <template>
   <div>
     <b-form>
-      <b-form-group id="content-group" label="" label-for="content">
+      <b-form-group
+        id="content-group"
+        label=""
+        label-for="content"
+        v-if="userInfo"
+      >
         <b-row>
           <b-col cols="12" md="11" style="padding: 0px 12px;">
             <b-form-textarea

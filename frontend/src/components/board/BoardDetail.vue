@@ -5,16 +5,23 @@
     </b-card-title>
     <b-row class="mb-1">
       <b-col>
-        <b-card
-          :header-html="
-            `<h4>${board.boardId}.
-          ${board.boardTitle}</h4><div><h6>${board.author}</div><div>${board.boardCreateTime}</h6></div>`
-          "
-          class="mb-2"
-          no-body
-        >
+        <b-card class="mb-2" no-body>
+          <template #header>
+            <b-row>
+              <b-col>
+                <h4 class="mb-2">{{ title }}</h4>
+              </b-col>
+            </b-row>
+            <b-row>
+              <b-col
+                ><h6>작성자 : {{ writer }}</h6></b-col
+              >
+              <b-col class="text-sm-right"
+                ><h6>{{ regDttm }}</h6></b-col
+              >
+            </b-row>
+          </template>
           <b-card-body class="text-left">
-            <!-- <div v-html="message"></div> -->
             <div style="height:300px;"><Viewer ref="viewer" /><br /></div>
           </b-card-body>
         </b-card>
@@ -26,7 +33,7 @@
       <b-button-group
         class="btn float-right"
         size="sm"
-        v-if="userInfo.username == board.author"
+        v-if="userInfo && userInfo.username == board.author"
       >
         <b-button type="button" variant="primary" @click="moveEditBoard">
           <b-icon icon="pencil"></b-icon>
@@ -50,6 +57,8 @@ import Viewer from "@/components/board/Viewer";
 import { getBoardDetailAPI, deleteBoardAPI } from "@/api/board";
 import ReplyWrite from "@/components/board/reply/ReplyWrite";
 import ReplyList from "@/components/board/reply/ReplyList";
+import moment from "moment";
+
 const memberStore = "memberStore";
 export default {
   name: "BoardDetail",
@@ -75,7 +84,9 @@ export default {
         this.boardId = response.data.boardId;
         this.title = response.data.boardTitle;
         this.writer = response.data.author;
-        this.regDttm = response.data.boardCreateTime;
+        this.regDttm = moment(new Date(response.data.boardCreateTime)).format(
+          "YYYY-MM-DD kk:mm"
+        );
         this.$refs.viewer.setContent(response.data.boardContent);
       },
       (error) => {
