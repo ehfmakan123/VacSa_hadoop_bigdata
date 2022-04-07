@@ -237,9 +237,6 @@ export default {
     ]),
 
     modifyInfo() {
-      console.log(this.userInfo);
-
-      console.log(this.user);
       this.user.username = this.userInfo.username;
       this.user.email = this.userInfo.email;
 

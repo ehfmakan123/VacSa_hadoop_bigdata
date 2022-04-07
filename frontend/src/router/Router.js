@@ -18,7 +18,6 @@ const onlyAuthUser = async (to, from, next) => {
     // next({ name: "SignIn" });
     router.push({ name: "MemberLogin" });
   } else {
-    console.log("로그인 했다.");
     next();
   }
 };

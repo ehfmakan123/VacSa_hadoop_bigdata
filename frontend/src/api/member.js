@@ -29,7 +29,6 @@ async function registerUser(user, success, fail) {
 
 async function findById(username, success, fail) {
   api.defaults.headers["accessToken"] = sessionStorage.getItem("accessToken");
-  console.log("findById", username);
   await api
     .get(`/user/info/${username}`)
     .then(success)

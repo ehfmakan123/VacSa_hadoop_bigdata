@@ -135,7 +135,6 @@ export default {
     },
     logout() {
       this.SET_IS_LOGIN(false);
-      console.log(this.isLogin);
       this.SET_LOGOUT(null);
       sessionStorage.removeItem("accessToken");
       this.$router.push({ name: "Starter" });
