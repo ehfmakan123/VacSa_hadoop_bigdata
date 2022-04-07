@@ -18,12 +18,12 @@ export default [
     title: "게시판",
     to: "/board",
   },
-  {
-    id: "5",
-    icon: "mdi mdi-login",
-    title: "로그인",
-    to: "/ui-elements/breadcrumb",
-  },
+  // {
+  //   id: "5",
+  //   icon: "mdi mdi-login",
+  //   title: "로그인",
+  //   to: "/ui-elements/breadcrumb",
+  // },
   // {
   //   id: "6",
   //   icon: "mdi mdi-equal",
