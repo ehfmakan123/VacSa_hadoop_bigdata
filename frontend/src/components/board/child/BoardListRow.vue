@@ -7,7 +7,7 @@
       </router-link>
     </b-th>
     <b-td>{{ author }}</b-td>
-    <b-td>{{ boardCreateTime }}</b-td>
+    <b-td>{{ regDate }}</b-td>
   </b-tr>
 </template>
 
@@ -16,6 +16,11 @@ import moment from "moment";
 
 export default {
   name: "BoardListRow",
+  data() {
+    return {
+      regDate: "",
+    };
+  },
   props: {
     boardId: Number,
     author: String,
@@ -23,8 +28,8 @@ export default {
     boardCreateTime: String,
   },
   created() {
-    this.boardCreateTime = moment(new Date(this.boardCreateTime)).format(
-      "YYYY-MM-DD kk:mm:ss"
+    this.regDate = moment(new Date(this.boardCreateTime)).format(
+      "YYYY-MM-DD kk:mm"
     );
   },
   computed: {},

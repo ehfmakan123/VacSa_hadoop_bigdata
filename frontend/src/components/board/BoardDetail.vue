@@ -17,7 +17,7 @@
                 ><h6>작성자 : {{ writer }}</h6></b-col
               >
               <b-col class="text-sm-right"
-                ><h6>{{ regDttm }}</h6></b-col
+                ><h6>{{ regDate }}</h6></b-col
               >
             </b-row>
           </template>
@@ -73,7 +73,7 @@ export default {
       boardId: 0,
       title: "",
       writer: "",
-      regDttm: "",
+      regDate: "",
     };
   },
   created() {
@@ -84,7 +84,7 @@ export default {
         this.boardId = response.data.boardId;
         this.title = response.data.boardTitle;
         this.writer = response.data.author;
-        this.regDttm = moment(new Date(response.data.boardCreateTime)).format(
+        this.regDate = moment(new Date(response.data.boardCreateTime)).format(
           "YYYY-MM-DD kk:mm"
         );
         this.$refs.viewer.setContent(response.data.boardContent);

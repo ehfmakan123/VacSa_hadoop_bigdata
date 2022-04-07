@@ -7,7 +7,7 @@
         </b-card-title>
         <b-card-text>
           <!-- <v-text-field label="Title" v-model="title"> </v-text-field> -->
-          <b-form-input id="title" :type="text" v-model="title"></b-form-input>
+          <b-form-input id="title" v-model="title"></b-form-input>
           <Editor ref="editor" />
         </b-card-text>
         <b-button
@@ -62,7 +62,6 @@ export default {
           boardContent: this.$refs.editor.getContent(),
         },
         ({ data }) => {
-          console.log(data);
           if (data === "success") {
             alert("수정 완료");
           }
