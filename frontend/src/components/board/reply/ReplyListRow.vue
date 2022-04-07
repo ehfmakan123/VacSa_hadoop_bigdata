@@ -14,7 +14,7 @@
         v-if="update"
       />
     </b-td>
-    <b-td class="col-md-2">{{ commentCreateTime }}</b-td>
+    <b-td class="col-md-2">{{ regDate }}</b-td>
     <b-td v-if="userInfo">
       <b-button
         type="button"
@@ -62,11 +62,12 @@ export default {
       update: false, // update가 아직 되지 않은 상태
       replyContent: "",
       content: this.commentContent,
+      regDate: "",
     };
   },
   created() {
-    this.commentCreateTime = moment(new Date(this.commentCreateTime)).format(
-      "YYYY-MM-DD kk:mm:ss"
+    this.regDate = moment(new Date(this.commentCreateTime)).format(
+      "YYYY-MM-DD kk:mm"
     );
     this.replyContent = this.commentContent;
   },

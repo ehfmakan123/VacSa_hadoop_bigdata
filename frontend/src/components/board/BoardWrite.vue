@@ -64,10 +64,9 @@ export default {
           boardContent: content,
           author: username,
         },
-        ({ data }) => {
+        () => {
           // 서버로부터 요청받은 값.
           // 서버 요청받은 후의 로직
-          console.log(data);
           this.moveList();
         },
         (error) => {
