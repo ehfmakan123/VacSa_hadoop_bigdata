@@ -190,5 +190,10 @@ export default {
   },
   
 };
+axios({
+  method: "GET",
+  url: "https://cors-anywhere.herokuapp.com/https://api.dropper.tech/covid"
+})
+
 </script>
 

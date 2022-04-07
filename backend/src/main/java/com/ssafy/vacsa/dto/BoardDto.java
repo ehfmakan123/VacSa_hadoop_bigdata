@@ -22,7 +22,7 @@ public class BoardDto {
     public BoardDto(Board board) {     // vote entity 받아와서 vote dto로 변환. list로 딸려있는 애들은 따로 요청해서 보내야 될거 같음
         this.boardId = board.getBoardId();
         this.boardTitle = board.getBoardTitle();
-        this.author=board.getAuthor().getUsername();
+        this.author=board.getAuthor().getNickname(); // 작성자 명을 닉네임으로 표시 
         this.boardContent = board.getBoardContent();
         this.boardCreateTime = board.getBoardCreateTime();
     }
@@ -52,7 +52,7 @@ public class BoardDto {
     private LocalDateTime boardCreateTime;
     @ApiModelProperty(position = 5, value = "게시글에 달린 댓글들 리스트.")
     private List<Long> boardComments;
-    @ApiModelProperty(position = 6, value = "게시글을 작성한 유저 id")
+    @ApiModelProperty(position = 6, value = "게시글을 작성한 유저 닉네임")
     private String author;
 
 }

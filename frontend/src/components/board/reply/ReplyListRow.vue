@@ -1,6 +1,6 @@
 <template>
   <b-tr>
-    <b-td class="col-md-2">{{ commentUser }}</b-td>
+    <b-td class="col-md-2">{{ commentUserNickname }}</b-td>
     <b-td class="col-md-5" style="text-align:left;" v-if="con">{{
       replyContent
     }}</b-td>
