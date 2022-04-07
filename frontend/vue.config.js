@@ -8,7 +8,7 @@
 //   },
 // };
 module.exports = {
-  Server: {
+  devServer: {
     proxy: {
       "/": {
         target: "https://nip.kdca.go.kr/",
