@@ -61,10 +61,7 @@ export default {
           boardTitle: this.title,
           boardContent: this.$refs.editor.getContent(),
         },
-        ({ data }) => {
-          if (data === "success") {
-            alert("수정 완료");
-          }
+        () => {
           this.moveList();
         },
         (error) => {

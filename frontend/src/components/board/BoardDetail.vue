@@ -110,11 +110,9 @@ export default {
       });
     },
     delBoard() {
-      if (confirm("정말로 삭제하시겠습니까?")) {
-        deleteBoardAPI(this.board.boardId, () => {
-          this.$router.push({ name: "Board" });
-        });
-      }
+      deleteBoardAPI(this.board.boardId, () => {
+        this.$router.push({ name: "Board" });
+      });
     },
     moveList() {
       this.$router.push({ name: "Board" });
