@@ -1,5 +1,11 @@
 import axios from "axios";
 import { API_BASE_URL, APT_DEAL_URL } from "@/config";
+import AxiosPlugin from "vue-axios-cors";
+axios.defaults.withCredentials = true;
+Vue.use(AxiosPlugin);
+axios.defaults.headers.common["Content-Type"] =
+  "application/x-www-form-urlencoded";
+axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
 
 // axios 객체 생성
 function apiInstance() {
