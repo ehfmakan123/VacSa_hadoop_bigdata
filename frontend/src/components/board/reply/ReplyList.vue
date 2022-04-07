@@ -37,12 +37,9 @@ export default {
   },
   methods: {
     deleteReply(replyno) {
-      if (confirm("정말로 삭제하시겠습니까?")) {
-        deleteReply(replyno, () => {
-          alert("삭제 완료");
-          location.reload();
-        });
-      }
+      deleteReply(replyno, () => {
+        location.reload();
+      });
     },
   },
 };

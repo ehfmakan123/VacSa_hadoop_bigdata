@@ -84,11 +84,9 @@ export default {
   },
   methods: {
     deleteReply(commentId) {
-      if (confirm("삭제하시겠습니까?")) {
-        deleteReply(commentId, () => {
-          location.reload();
-        });
-      }
+      deleteReply(commentId, () => {
+        location.reload();
+      });
     },
     updateForm() {
       this.update = !this.update;
