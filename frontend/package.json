@@ -18,6 +18,7 @@
     "moment": "^2.29.1",
     "node-sass": "^5.0.0",
     "vue": "^2.6.11",
+    "vue-axios-cors": "^1.0.1",
     "vue-chartjs": "^3.4.2",
     "vue-doughnut-chart": "^0.3.0",
     "vue-router": "^3.5.1",

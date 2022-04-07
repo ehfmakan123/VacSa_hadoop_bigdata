@@ -22,7 +22,9 @@ new Vue({
   async beforeCreate() {
     // 새로고침시 로그인 풀리는거 방지
     let token = sessionStorage.getItem("accessToken");
-    await this.$store.dispatch("memberStore/getUserInfo", token);
+    if (token !== null) {
+      await this.$store.dispatch("memberStore/getUserInfo", token);
+    }
   },
-  render: (h) => h(App),
+  render: h => h(App),
 }).$mount("#app");
