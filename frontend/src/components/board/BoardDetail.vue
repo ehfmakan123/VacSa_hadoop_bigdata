@@ -22,7 +22,7 @@
             </b-row>
           </template>
           <b-card-body class="text-left">
-            <div><Viewer ref="viewer" /><br /></div>
+            <div style="min-height:300px;"><Viewer ref="viewer" /><br /></div>
           </b-card-body>
         </b-card>
       </b-col>
