@@ -64,14 +64,11 @@ const memberStore = {
     },
     async getUserInfo({ commit }, token) {
       let decode_token = jwt_decode(token);
-      console.log("로그인");
       await findById(
         decode_token.userId,
         (response) => {
           if (response.data.message === "success") {
-            console.log(response.data);
             commit("SET_USER_INFO", response.data);
-            //console.log(response.data.userInfo);
           } else {
             console.log("유저 정보 없음!!");
           }
