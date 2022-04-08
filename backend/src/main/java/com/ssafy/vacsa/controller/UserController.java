@@ -206,26 +206,26 @@ public class UserController {
         return new ResponseEntity<Map<String,Object>>(resultMap,status);
     }
 
-//    @ApiOperation(value = "아이디 찾기")
-//    @GetMapping("info/${username}")
-//    public ResponseEntity<Map<String,Object>> findId(@PathVariable @ApiParam(value = "아이디") String username) throws Exception {
-//        Map<String,Object> resultMap = new HashMap<>();
-//        HttpStatus status = null;
-//        try {
-//            if(!userService.emailCheck(username)){//이메일이 존재하는 경우
-//                emailConfirmationService.createEmailConfirmationToken(username);
-//                resultMap.put("message",SUCCESS);
-//                resultMap.put("userInfo",userService.findId(username));
-//            }else{
-//                resultMap.put("message", FAIL);
-//            }
-//            status = HttpStatus.ACCEPTED;
-//        }catch (Exception e){
-//            resultMap.put("message", e.getMessage());
-//            status = HttpStatus.INTERNAL_SERVER_ERROR;
-//        }
-//        return new ResponseEntity<>(resultMap,status);
-//    }
+    @ApiOperation(value = "아이디 찾기")
+    @GetMapping("info/${username}")
+    public ResponseEntity<Map<String,Object>> findId(@PathVariable @ApiParam(value = "아이디") String username) throws Exception {
+        Map<String,Object> resultMap = new HashMap<>();
+        HttpStatus status = null;
+        try {
+            if(!userService.emailCheck(username)){//이메일이 존재하는 경우
+                emailConfirmationService.createEmailConfirmationToken(username);
+                resultMap.put("message",SUCCESS);
+                resultMap.put("userInfo",userService.findId(username));
+            }else{
+                resultMap.put("message", FAIL);
+            }
+            status = HttpStatus.ACCEPTED;
+        }catch (Exception e){
+            resultMap.put("message", e.getMessage());
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+        return new ResponseEntity<>(resultMap,status);
+    }
 
     @ApiOperation(value ="비밀번호 수정")
     @PutMapping("/modifypass")
