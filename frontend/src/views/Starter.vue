@@ -21,15 +21,15 @@
       <b-col cols="12" md="6" lg="3">
         <b-card class="mb-4">
           <h4 class="card-title mb-1 " style="white-space:pre-line">
-            {{ (field / 10000).toFixed(0) }}만명 확진
+            14,983,694 명 확진
           </h4>
-          <b-card-text class="mb-2">누적 확진자 수 {{ decnt }}%</b-card-text>
-          <b-progress variant="warning" v-model="decnt" max="100"></b-progress>
+          <b-card-text class="mb-2">누적 확진자 수 25.0%</b-card-text>
+          <b-progress variant="warning" value="25" max="100"></b-progress>
         </b-card>
       </b-col>
       <b-col cols="12" md="6" lg="3">
         <b-card class="mb-4">
-          <h4 class="card-title mb-1">{{ field2 }}명 사망</h4>
+          <h4 class="card-title mb-1">18,754명 사망</h4>
           <b-card-text class="mb-2">누적 사망자 수</b-card-text>
           <b-progress variant="danger" value="30" max="100"></b-progress>
         </b-card>
