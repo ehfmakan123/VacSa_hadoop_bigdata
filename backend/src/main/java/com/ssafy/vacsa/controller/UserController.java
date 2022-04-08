@@ -207,7 +207,7 @@ public class UserController {
     }
 
     @ApiOperation(value = "아이디 찾기")
-    @GetMapping("info/${username}")
+    @GetMapping("/info/${username}")
     public ResponseEntity<Map<String,Object>> findId(@PathVariable @ApiParam(value = "아이디") String username) throws Exception {
         Map<String,Object> resultMap = new HashMap<>();
         HttpStatus status = null;
