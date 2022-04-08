@@ -168,9 +168,7 @@ export default {
   created() {
     var vm = this;
     axios
-      .get(
-        "https://cors-anywhere.herokuapp.com/http://nip.kdca.go.kr/irgd/cov19stats.do?list=all"
-      )
+      .get("https://nip.kdca.go.kr/irgd/cov19stats.do?list=all")
       .then(function(response) {
         //console.log(response);
         vm.data1 = response.data.substring(458, 466);
@@ -186,7 +184,7 @@ export default {
 
     axios
       .get(
-        "https://cors-anywhere.herokuapp.com/http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson?serviceKey=Mo7exllHksroP%2BskN4M7XGw%2FLNhgZ3HNCV%2BZkPLkAJvPpGb21ckO%2F6KynGVAf4dMAbe%2F6a7COLv2g252FeE%2FFw%3D%3D&pageNo=1&numOfRows=1&startCreateDt=20220310"
+        "http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson?serviceKey=Mo7exllHksroP%2BskN4M7XGw%2FLNhgZ3HNCV%2BZkPLkAJvPpGb21ckO%2F6KynGVAf4dMAbe%2F6a7COLv2g252FeE%2FFw%3D%3D&pageNo=1&numOfRows=1&startCreateDt=20220310"
       )
       .then(function(response) {
         vm.field = response.data.response.body.items.item.decideCnt;
