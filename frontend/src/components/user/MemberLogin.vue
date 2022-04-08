@@ -29,14 +29,14 @@
                 v-model="user.password"
                 required
                 placeholder="비밀번호 입력...."
-                @keyup.enter="confirm"
+                @keyup.enter="moveMain"
               ></b-form-input>
             </b-form-group>
             <b-button
               type="button"
               variant="primary"
               class="m-1"
-              @click="confirm"
+              @click="moveMain"
               >로그인</b-button
             >
             <b-button
@@ -74,14 +74,15 @@ export default {
   },
   methods: {
     ...mapActions(memberStore, ["userConfirm", "getUserInfo"]),
-    async confirm() {
-      await this.userConfirm(this.user);
-      let token = sessionStorage.getItem("accessToken");
-      if (this.isLogin) {
-        await this.getUserInfo(token);
-        this.moveMain();
-      }
-    },
+    // async confirm() {
+    //   await this.userConfirm(this.user);
+    //   let token = sessionStorage.getItem("accessToken");
+    //   if (this.isLogin) {
+    //     // await this.getUserInfo(token);
+    //     this.moveMain();
+    //   }
+    // },
+
     movePage() {
       this.$router.push({ name: "MemberJoin" });
     },

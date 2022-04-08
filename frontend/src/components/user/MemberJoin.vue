@@ -63,7 +63,7 @@
               type="button"
               variant="primary"
               class="m-1"
-              @click="checkValue"
+              @click="moveMain"
               >회원가입</b-button
             >
             <b-button type="button" variant="danger" class="m-1" @click="cancel"
@@ -149,6 +149,10 @@ export default {
       this.$router.push({ name: "Starter" });
     },
 
+    moveMain() {
+      this.$router.push({ name: "Starter" });
+    },
+
     // 아이디 중복검사
     checkIdRepeat() {
       // 키가 눌릴 때마다 아이디 중복검사
@@ -162,7 +166,7 @@ export default {
         return;
       } else {
         this.idLenValidate = true;
-        checkRepeatIdById(this.user.username, (response) => {
+        checkRepeatIdById(this.user.username, response => {
           if (response.data == 1) {
             this.idresult = `<b>${ckid}</b>는 이미 사용중입니다. 사용할 수 없습니다.`;
             this.isFail = true;
