@@ -212,8 +212,8 @@ public class UserController {
         Map<String,Object> resultMap = new HashMap<>();
         HttpStatus status = null;
         try {
-            if(!userService.emailCheck(username)){//이메일이 존재하는 경우
-                emailConfirmationService.createEmailConfirmationToken(username);
+            if(userService.findId(username) != null){
+//                emailConfirmationService.createEmailConfirmationToken(username);
                 resultMap.put("message",SUCCESS);
                 resultMap.put("userInfo",userService.findId(username));
             }else{
