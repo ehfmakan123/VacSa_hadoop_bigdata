@@ -38,7 +38,7 @@
 
 ##### 로고
 
-<img src="README.assets/KakaoTalk_20220404_095743291.png" alt="KakaoTalk_20220404_095743291" style="zoom:150%;" />
+![site-logo](/uploads/f762d17578b07a72a442f785b7497350/site-logo.png)
 
 ### ⚙️ 4. 주요 기능
 
@@ -90,7 +90,7 @@
 
 ### 🔧 6. 아키텍처
 
-![image-20220405120633410](README.assets/image-20220405120633410.png)
+![image](/uploads/015aefc4bdf2a4669c179de0cece8cd5/image.png)
 
 
 
