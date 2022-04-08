@@ -16,12 +16,13 @@ public class WebMvcConfig implements WebMvcConfigurer{ // web 설정 파일
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOrigins("*")
+                .allowedOrigins("https://j6a402.p.ssafy.io/*")
                 .allowedMethods(
                         HttpMethod.GET.name(),
                         HttpMethod.HEAD.name(),
                         HttpMethod.POST.name(),
                         HttpMethod.PUT.name(),
                         HttpMethod.DELETE.name()
-                );
+                ).maxAge(3000);
     }
 }
