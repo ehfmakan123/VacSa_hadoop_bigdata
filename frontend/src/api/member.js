@@ -30,7 +30,7 @@ async function registerUser(user, success, fail) {
 async function findById(username, success, fail) {
   api.defaults.headers["accessToken"] = sessionStorage.getItem("accessToken");
   await api
-    .get(`/user/info/${username}`)
+    .get(`/user/findid/${username}`)
     .then(success)
     .catch(fail);
 }
